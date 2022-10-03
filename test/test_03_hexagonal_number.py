@@ -3,8 +3,7 @@ import math
 import random
 import number_problems_1 as prog
 
-@pytest.mark.parametrize(('n', 'res'), [(0, 1), 
-                                        (1, 7), 
+@pytest.mark.parametrize(('n', 'res'), [(1, 7), 
                                         (2, 19), 
                                         (3, 37), 
                                         (4, 61), 
@@ -15,7 +14,8 @@ import number_problems_1 as prog
                                         (180, 97741), 
                                         (225, 152551), 
                                         (276, 229357),
-                                        (580, 1010941), 
+                                        (580, 1010941),
+                                        (1000, 3003001), 
                                         (6685, 134087731), 
                                         (9829,289857211)])
 def test_hexagonal_number( n, res):
