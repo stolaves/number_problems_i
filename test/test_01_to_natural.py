@@ -20,7 +20,7 @@ import number_problems_1 as prog
                                         (str(float(n:= random.randint(0,10000))),n),
                                         (str(float(n:= random.randint(0,10000))),n),
                                         ("1.0",1),
-                                        ("6.00000000000000000",1),
+                                        ("6.00000000000000000",6),
                                         (random.random(),False),
                                         (random.random(),False),
                                         (random.random(),False)])
