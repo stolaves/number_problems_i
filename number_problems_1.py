@@ -6,7 +6,7 @@ def to_natural(n):
 
 
 def is_square(n):
-    if not is_natural(n):
+    if not to_natural(n):
         raise ValueError
 
     n = to_natural(n)
