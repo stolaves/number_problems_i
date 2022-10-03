@@ -31,5 +31,5 @@ def factorial(n):
     pass
 
 
-def smallest_digit_sum(n):
+def smallest_n_sum(n):
     pass
