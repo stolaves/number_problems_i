@@ -1,0 +1,70 @@
+name: Autograding Tests
+'on':
+- workflow_dispatch
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Testing To Natural
+      id: testing-to-natural
+      uses: classroom-resources/autograding-python-grader@v1
+      with:
+        timeout: 1
+        max-score: 5
+        setup-command: sudo -H pip3 install pytest
+    - name: Testing Digit Sum
+      id: testing-digit-sum
+      uses: classroom-resources/autograding-python-grader@v1
+      with:
+        timeout: 1
+        max-score: 5
+        setup-command: sudo -H pip3 install pytest
+    - name: Testing Factorials
+      id: testing-factorials
+      uses: classroom-resources/autograding-python-grader@v1
+      with:
+        timeout: 1
+        max-score: 5
+        setup-command: sudo -H pip3 install pytest
+    - name: Testing Hexagonal Numbers
+      id: testing-hexagonal-numbers
+      uses: classroom-resources/autograding-python-grader@v1
+      with:
+        timeout: 1
+        max-score: 5
+        setup-command: sudo -H pip3 install pytest
+    - name: Testing Minimum N Sum
+      id: testing-minimum-n-sum
+      uses: classroom-resources/autograding-python-grader@v1
+      with:
+        timeout: 1
+        max-score: 5
+        setup-command: sudo -H pip3 install pytest
+    - name: Checking Code Quality
+      id: checking-code-quality
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Checking Code Quality
+        setup-command: sudo -H pip3 install pylint
+        command: python3 -m pylint --disable=C0116,C0103,W0611 number_problems_1.py
+        timeout: 2
+        max-score: 5
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        TESTING-TO-NATURAL_RESULTS: "${{steps.testing-to-natural.outputs.result}}"
+        TESTING-DIGIT-SUM_RESULTS: "${{steps.testing-digit-sum.outputs.result}}"
+        TESTING-FACTORIALS_RESULTS: "${{steps.testing-factorials.outputs.result}}"
+        TESTING-HEXAGONAL-NUMBERS_RESULTS: "${{steps.testing-hexagonal-numbers.outputs.result}}"
+        TESTING-MINIMUM-N-SUM_RESULTS: "${{steps.testing-minimum-n-sum.outputs.result}}"
+        CHECKING-CODE-QUALITY_RESULTS: "${{steps.checking-code-quality.outputs.result}}"
+      with:
+        runners: testing-to-natural,testing-digit-sum,testing-factorials,testing-hexagonal-numbers,testing-minimum-n-sum,checking-code-quality
