@@ -13,41 +13,51 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: Testing To Natural
+    - name: Testing to Natural
       id: testing-to-natural
-      uses: classroom-resources/autograding-python-grader@v1
+      uses: classroom-resources/autograding-command-grader@v1
       with:
+        test-name: Testing to Natural
+        setup-command: sudo -H pip3 install pytest
+        command: python3 -m pytest test/test_01_to_natural.py
         timeout: 1
         max-score: 5
-        setup-command: sudo -H pip3 install pytest
     - name: Testing Digit Sum
-      id: testing-digit-sum
-      uses: classroom-resources/autograding-python-grader@v1
+      id: testing-digital-sum
+      uses: classroom-resources/autograding-command-grader@v1
       with:
+        test-name: Testing Digit Sum
+        setup-command: sudo -H pip3 install pytest
+        command: python3 -m pytest test/test_02_digit_sum.py
         timeout: 1
         max-score: 5
-        setup-command: sudo -H pip3 install pytest
     - name: Testing Factorials
       id: testing-factorials
-      uses: classroom-resources/autograding-python-grader@v1
+      uses: classroom-resources/autograding-command-grader@v1
       with:
         timeout: 1
         max-score: 5
         setup-command: sudo -H pip3 install pytest
+        command: python3 -m pytest test/test_04_factorials.py
+        test-name: Testing Factorials
     - name: Testing Hexagonal Numbers
       id: testing-hexagonal-numbers
-      uses: classroom-resources/autograding-python-grader@v1
+      uses: classroom-resources/autograding-command-grader@v1
       with:
         timeout: 1
         max-score: 5
         setup-command: sudo -H pip3 install pytest
+        command: python3 -m pytest test/test_03_hexagonal_number.py
+        test-name: Testing Hexagonal Numbers
     - name: Testing Minimum N Sum
       id: testing-minimum-n-sum
-      uses: classroom-resources/autograding-python-grader@v1
+      uses: classroom-resources/autograding-command-grader@v1
       with:
         timeout: 1
         max-score: 5
         setup-command: sudo -H pip3 install pytest
+        command: python3 -m pytest test/test_05_minimum_n_sum.py
+        test-name: Testing Minimum N Sum
     - name: Checking Code Quality
       id: checking-code-quality
       uses: classroom-resources/autograding-command-grader@v1
